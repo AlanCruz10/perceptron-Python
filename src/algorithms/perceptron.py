@@ -7,6 +7,7 @@ def execute_perceptron(data):
     matrix = np.insert(np.array(data["matrix"]), 0, 1, axis=1)
     yd = np.array(matrix[:, -1]).astype(int).reshape(-1, 1)
     w = initializer_w(matrix)
+    # w_eras = [] para que la epoca 1 sea la w inicial comenta la linea 11
     w_eras = [w]
     errors = []
     # iterations = 0
@@ -17,6 +18,7 @@ def execute_perceptron(data):
         delta_w = calculate_delta_w(data["eta"], e, matrix)
         norm = calculate_norm(e)
         errors.append(norm)
+        # w_eras.append(w) para que la epoca 1 sea la w inicial comenta la linea 22
         w = update_w(w, delta_w)
         w_eras.append(w)
         # iterations = era
