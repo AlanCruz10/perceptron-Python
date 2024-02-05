@@ -15,6 +15,7 @@ def output(frame, info):
                 f"Eta: {info['eta']} \n" \
                 f"Épocas: {info['eras']}\n" \
                 f"Tolerancia: {info['tolerance']}\n"
+    # f"Épocas hasta sin error: {info['eras_error']}\n" \
     scrollbar = tk.Scrollbar(output_frame, orient=tk.VERTICAL)
     output_text = tk.Text(output_frame, wrap=tk.WORD, yscrollcommand=scrollbar.set, bg='black', fg='white')
     output_text.insert(tk.END, info_text)

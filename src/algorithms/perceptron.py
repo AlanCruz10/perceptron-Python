@@ -9,7 +9,8 @@ def execute_perceptron(data):
     w = initializer_w(matrix)
     w_eras = [w]
     errors = []
-    for _ in range(data["eras"]):
+    # iterations = 0
+    for era in range(data["eras"]):
         u = get_u(w, matrix)
         yc = function_activation_step(u)
         e = calculate_error(yd, yc)
@@ -18,9 +19,12 @@ def execute_perceptron(data):
         errors.append(norm)
         w = update_w(w, delta_w)
         w_eras.append(w)
-
+        # iterations = era
+        # if norm <= data["tolerance"]:
+        #     break
     info = {
         "eras": data["eras"],
+        # "eras_error": iterations,
         "tolerance": data["tolerance"],
         "eta": data["eta"],
         "w_initial": w_eras[0],

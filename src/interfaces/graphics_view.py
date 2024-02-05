@@ -17,6 +17,11 @@ def graphic_norm(frame, canvas, errors):
     ax.spines['bottom'].set_position('zero')
     ax.spines['bottom'].set_color('gray')
     ax.plot(eras, errors, label='Errores', marker='s', linestyle='-', color='red')
+    ax.set_xlim((0 - 1), (len(eras) + 1))
+    if min(errors) >= 0:
+        ax.set_ylim((0 - 1), (max(errors) + 1))
+    else:
+        ax.set_ylim((min(errors) - 1), (max(errors) + 1))
     ax.set_xticks(range(len(errors)), labels=eras, rotation=30)
     ax.set_title('Evolución de la norma del error')
     ax.set_xlabel('Época')
@@ -43,7 +48,7 @@ def graphic_w(frame, canvas, w_eras):
     output_folder = 'graphics/'
     os.makedirs(output_folder, exist_ok=True)
     eras = list(range(0, len(w_eras)))
-    w = np.squeeze(np.array(w_eras))
+    w = np.array([v[0] for v in w_eras])
     fig, ax = plt.subplots(figsize=(12, 5.9), dpi=60)
     ax.spines['left'].set_position('zero')
     ax.spines['left'].set_color('gray')
